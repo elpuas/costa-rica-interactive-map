@@ -18,8 +18,16 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0"
     },
     "scripts": {
-        "phpcs": "phpcs --standard=WordPress",
-        "phpcbf": "phpcbf --standard=WordPress"
+        "phpcs": "./vendor/bin/phpcs --standard=WordPress",
+        "phpcbf": "./vendor/bin/phpcbf --standard=WordPress",
+        "check-cs": "@phpcs -v ./",
+        "fix-cs": "@phpcbf -v ./",
+        "post-install-cmd": [
+            "./vendor/bin/phpcs --config-set installed_paths ../../wp-coding-standards/wpcs"
+        ],
+        "post-update-cmd": [
+            "./vendor/bin/phpcs --config-set installed_paths ../../wp-coding-standards/wpcs"
+        ]
     },
     "config": {
         "allow-plugins": {

@@ -1,7 +1,8 @@
 <?php
+
 /**
  * Plugin Name: Costa Rica Interactive Map
- * Plugin URI: https://yourwebsite.com
+ * Plugin URI: https://github.com/elpuas/costa-rica-interactive-map
  * Description: An interactive map of Costa Rica using Leaflet.js
  * Version: 1.0.0
  * Author: ElPuas Digital Crafts
@@ -28,7 +29,8 @@ if (is_admin()) {
 /**
  * Enqueue scripts and styles.
  */
-function costa_rica_map_enqueue_scripts() {
+function costa_rica_map_enqueue_scripts()
+{
     // Enqueue Leaflet CSS
     wp_enqueue_style(
         'leaflet-css',
@@ -49,7 +51,7 @@ function costa_rica_map_enqueue_scripts() {
     // Enqueue our custom CSS
     wp_enqueue_style(
         'costa-rica-map-style',
-        COSTA_RICA_MAP_PLUGIN_URL . 'assets/css/style.css',
+        COSTA_RICA_MAP_PLUGIN_URL . 'build/index.css',
         array(),
         COSTA_RICA_MAP_VERSION
     );
@@ -57,7 +59,7 @@ function costa_rica_map_enqueue_scripts() {
     // Enqueue our custom JavaScript
     wp_enqueue_script(
         'costa-rica-map-script',
-        COSTA_RICA_MAP_PLUGIN_URL . 'assets/js/map.js',
+        COSTA_RICA_MAP_PLUGIN_URL . 'build/index.js',
         array('leaflet-js'),
         COSTA_RICA_MAP_VERSION,
         true
@@ -77,12 +79,13 @@ function costa_rica_map_enqueue_scripts() {
 /**
  * Register shortcode for the map.
  */
-function costa_rica_map_shortcode() {
+function costa_rica_map_shortcode()
+{
     ob_start();
-    ?>
+?>
     <div id="costa-rica-map" style="height: 500px;"></div>
     <div id="tour-info"></div>
-    <?php
+<?php
     return ob_get_clean();
 }
 
@@ -93,7 +96,8 @@ add_shortcode('costa_rica_map', 'costa_rica_map_shortcode');
 /**
  * Initialize plugin
  */
-function costa_rica_map_init() {
+function costa_rica_map_init()
+{
     // Add initialization code here
 }
-add_action('init', 'costa_rica_map_init'); 
+add_action('init', 'costa_rica_map_init');
