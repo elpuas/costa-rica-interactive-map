@@ -31,24 +31,7 @@ if (is_admin()) {
  */
 function costa_rica_map_enqueue_scripts()
 {
-    // Enqueue Leaflet CSS
-    wp_enqueue_style(
-        'leaflet-css',
-        'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
-        array(),
-        '1.9.4'
-    );
-
-    // Enqueue Leaflet JavaScript
-    wp_enqueue_script(
-        'leaflet-js',
-        'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
-        array(),
-        '1.9.4',
-        true
-    );
-
-    // Enqueue our custom CSS
+    // Enqueue our custom CSS which includes Leaflet CSS
     wp_enqueue_style(
         'costa-rica-map-style',
         COSTA_RICA_MAP_PLUGIN_URL . 'build/index.css',
@@ -56,11 +39,11 @@ function costa_rica_map_enqueue_scripts()
         COSTA_RICA_MAP_VERSION
     );
 
-    // Enqueue our custom JavaScript
+    // Enqueue our custom JavaScript which includes Leaflet
     wp_enqueue_script(
         'costa-rica-map-script',
         COSTA_RICA_MAP_PLUGIN_URL . 'build/index.js',
-        array('leaflet-js'),
+        array(),
         COSTA_RICA_MAP_VERSION,
         true
     );
