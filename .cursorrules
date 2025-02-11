@@ -1,0 +1,82 @@
+# WordPress Plugin Development Rules
+
+# File Organization
+organize_files:
+  - admin/*.php: Admin-related functionality
+  - assets/css/*.css: Stylesheets
+  - assets/js/*.js: JavaScript files
+  - includes/*.php: Core plugin functionality
+  - languages/*.po: Translation files
+  - templates/*.php: Template files
+
+# Naming Conventions
+naming_conventions:
+  - prefix: costa_rica_map_
+  - functions: snake_case
+  - classes: PascalCase
+  - constants: UPPERCASE_WITH_UNDERSCORES
+  - files: lowercase-with-hyphens.php
+  - hooks: lowercase_with_underscores
+
+# Code Structure
+code_structure:
+  - max_line_length: 100
+  - indentation: 4 spaces
+  - php_tags: full <?php
+  - file_ending: no closing PHP tag
+  - hooks_priority: 10
+  - namespace: false
+
+# WordPress Standards
+wordpress_standards:
+  - text_domain: costa-rica-map
+  - i18n: true
+  - nonce_verification: required
+  - capability_checks: required
+  - sanitization: required
+  - escaping: required
+  - prefix_globals: true
+
+# Documentation
+documentation:
+  - file_header: required
+  - function_comments: required
+  - inline_comments: encouraged
+  - todo_format: "// TODO: description"
+
+# Security
+security:
+  - validate_inputs: true
+  - sanitize_outputs: true
+  - escape_outputs: true
+  - check_capabilities: true
+  - verify_nonces: true
+  - prevent_direct_access: true
+
+# Database
+database:
+  - table_prefix: wp_
+  - meta_prefix: _costa_rica_map_
+  - prepare_queries: required
+  - sanitize_inputs: required
+
+# JavaScript
+javascript:
+  - use_strict: true
+  - namespace: costaRicaMap
+  - jquery_prefix: $
+  - event_namespace: .costaRicaMap
+
+# CSS
+css:
+  - prefix: crm-
+  - specificity: max 3 levels
+  - units: rem, em, %
+  - media_queries: mobile first
+
+# Testing
+testing:
+  - phpcs: WordPress-Core
+  - phpmd: WordPress
+  - eslint: WordPress
+  - stylelint: WordPress
