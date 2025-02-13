@@ -1,4 +1,7 @@
 <?php
+
+namespace CostaRicaMap\Admin;
+
 /**
  * Admin functionality
  *
@@ -14,4 +17,4 @@ if (!defined('WPINC')) {
 require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/tour-functions.php';
 require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/zone-functions.php';
 require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/meta-functions.php';
-require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/ajax-functions.php'; 
+require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/ajax-functions.php';
