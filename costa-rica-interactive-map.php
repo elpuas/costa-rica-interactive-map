@@ -114,6 +114,7 @@ class Plugin
             array(
                 'ajaxurl' => \admin_url('admin-ajax.php'),
                 'nonce' => \wp_create_nonce('costa_rica_map_nonce'),
+                'pluginUrl' => COSTA_RICA_MAP_PLUGIN_URL,
             )
         );
     }

@@ -44,7 +44,7 @@ function register_tour_cpt()
         'label'               => \__('Tour', 'costa-rica-map'),
         'description'         => \__('Tour Description', 'costa-rica-map'),
         'labels'             => $labels,
-        'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'supports'           => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields',),
         'taxonomies'         => array('zone'),
         'hierarchical'       => false,
         'public'             => true,

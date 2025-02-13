@@ -1,18 +1,18 @@
 {
-  "name": "costa-rica-interactive-map",
-  "version": "1.0.0",
-  "description": "WordPress plugin for an interactive map of Costa Rica",
-  "scripts": {
-    "build": "wp-scripts build",
-    "start": "wp-scripts start",
-    "lint:js": "wp-scripts lint-js",
-    "lint:css": "wp-scripts lint-style"
-  },
-  "dependencies": {
-    "leaflet": "^1.9.4"
-  },
-  "devDependencies": {
-    "@wordpress/scripts": "^26.19.0",
-    "@wordpress/eslint-plugin": "^17.7.0"
-  }
-} 
+    "name": "costa-rica-interactive-map",
+    "version": "1.0.0",
+    "description": "WordPress plugin for an interactive map of Costa Rica",
+    "scripts": {
+        "build": "wp-scripts build",
+        "start": "wp-scripts start",
+        "lint:js": "wp-scripts lint-js",
+        "lint:css": "wp-scripts lint-style"
+    },
+    "dependencies": {
+        "leaflet": "^1.9.4"
+    },
+    "devDependencies": {
+        "@wordpress/scripts": "^26.19.0",
+        "@wordpress/eslint-plugin": "^17.7.0"
+    }
+}
