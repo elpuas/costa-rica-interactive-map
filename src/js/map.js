@@ -12,6 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
+    // Create custom icon
+    const customIcon = L.icon({
+        iconUrl: costaRicaMapData.pluginUrl + 'build/images/map-marker.svg',
+        iconSize: [32, 48], // Size of the icon
+        iconAnchor: [16, 48], // Point of the icon which will correspond to marker's location
+        popupAnchor: [0, -48], // Point from which the popup should open relative to the iconAnchor
+    });
+
     // Store markers in a layer group
     const markersLayer = L.layerGroup().addTo(map);
 
@@ -45,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => {
                 if (response.success && response.data) {
                     response.data.forEach(tour => {
-                        const marker = L.marker([tour.latitude, tour.longitude]).bindPopup(
-                            createPopupContent(tour)
-                        );
+                        const marker = L.marker([tour.latitude, tour.longitude], {
+                            icon: customIcon,
+                        }).bindPopup(createPopupContent(tour));
                         markersLayer.addLayer(marker);
                     });
                 }

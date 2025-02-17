@@ -15,10 +15,26 @@
     margin: 0 0 8px 0;
     font-size: 16px;
     font-weight: 600;
+    color: #00796B;
 }
 
 .leaflet-popup-content p {
-    margin: 0;
+    margin: 0 0 8px 0;
     font-size: 14px;
     line-height: 1.4;
-} 
+}
+
+.tour-popup .tour-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 16px;
+    background-color: #00796B;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.tour-popup .tour-link:hover {
+    background-color: #00695C;
+}
