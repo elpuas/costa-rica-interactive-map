@@ -1,13 +1,12 @@
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     ...defaultConfig,
     module: {
         ...defaultConfig.module,
         rules: [
-            ...defaultConfig.module.rules.filter(rule => !rule.test?.test?.('.svg')),
+            ...defaultConfig.module.rules,
             {
                 test: /\.svg$/,
                 type: 'asset/resource',
@@ -17,15 +16,4 @@ module.exports = {
             },
         ],
     },
-    plugins: [
-        ...defaultConfig.plugins,
-        new CopyPlugin({
-            patterns: [
-                {
-                    from: 'src/images',
-                    to: 'images',
-                },
-            ],
-        }),
-    ],
 };
