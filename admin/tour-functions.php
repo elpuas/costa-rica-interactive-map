@@ -1,5 +1,7 @@
 <?php
 
+namespace CostaRicaMap\Tours;
+
 /**
  * Tour Functions
  *
@@ -14,20 +16,20 @@ if (!defined('WPINC')) {
 /**
  * Register Custom Post Type for Tours
  */
-function costa_rica_map_register_tour_cpt()
+function register_tour_cpt()
 {
     $labels = array(
-        'name'               => _x('Tours', 'post type general name', 'costa-rica-map'),
-        'singular_name'      => _x('Tour', 'post type singular name', 'costa-rica-map'),
-        'menu_name'          => _x('Tours', 'admin menu', 'costa-rica-map'),
-        'add_new'            => _x('Add New', 'tour', 'costa-rica-map'),
-        'add_new_item'       => __('Add New Tour', 'costa-rica-map'),
-        'edit_item'          => __('Edit Tour', 'costa-rica-map'),
-        'new_item'           => __('New Tour', 'costa-rica-map'),
-        'view_item'          => __('View Tour', 'costa-rica-map'),
-        'search_items'       => __('Search Tours', 'costa-rica-map'),
-        'not_found'          => __('No tours found', 'costa-rica-map'),
-        'not_found_in_trash' => __('No tours found in Trash', 'costa-rica-map'),
+        'name'               => \__('Tours', 'costa-rica-map'),
+        'singular_name'      => \__('Tour', 'costa-rica-map'),
+        'menu_name'          => \__('Tours', 'costa-rica-map'),
+        'add_new'            => \__('Add New', 'costa-rica-map'),
+        'add_new_item'       => \__('Add New Tour', 'costa-rica-map'),
+        'edit_item'          => \__('Edit Tour', 'costa-rica-map'),
+        'new_item'           => \__('New Tour', 'costa-rica-map'),
+        'view_item'          => \__('View Tour', 'costa-rica-map'),
+        'search_items'       => \__('Search Tours', 'costa-rica-map'),
+        'not_found'          => \__('No tours found', 'costa-rica-map'),
+        'not_found_in_trash' => \__('No tours found in Trash', 'costa-rica-map'),
     );
 
     $args = array(
@@ -44,10 +46,22 @@ function costa_rica_map_register_tour_cpt()
         'menu_position'      => null,
         'supports'           => array('title', 'editor', 'thumbnail', 'excerpt'),
         'menu_icon'          => 'dashicons-location-alt',
+        'show_in_rest'       => true,
+        'rest_base'          => 'tours',
+        'rest_controller_class' => 'WP_REST_Posts_Controller',
     );
 
-    register_post_type('tour', $args);
+    \register_post_type('tour', $args);
 }
 
-// Hook into WordPress
-add_action('init', 'costa_rica_map_register_tour_cpt');
+/**
+ * Initialize the tour post type
+ */
+function init()
+{
+    // Register post type on init
+    \add_action('init', __NAMESPACE__ . '\\register_tour_cpt');
+}
+
+// Initialize
+init();

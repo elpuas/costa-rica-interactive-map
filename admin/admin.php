@@ -1,6 +1,9 @@
 <?php
+
+namespace CostaRicaMap\Admin;
+
 /**
- * Admin functionality
+ * Admin Functions
  *
  * @package Costa_Rica_Map
  */
@@ -10,8 +13,32 @@ if (!defined('WPINC')) {
     die;
 }
 
-// Include admin files
-require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/tour-functions.php';
-require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/zone-functions.php';
-require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/meta-functions.php';
-require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/ajax-functions.php'; 
+// Load Post Type
+require_once \plugin_dir_path(__FILE__) . 'tour-functions.php';
+
+// Load Taxonomy
+require_once \plugin_dir_path(__FILE__) . 'zone-functions.php';
+
+// Load Meta Boxes
+require_once \plugin_dir_path(__FILE__) . 'meta-functions.php';
+
+// Load AJAX Handlers
+require_once \plugin_dir_path(__FILE__) . 'ajax-functions.php';
+
+// Initialize admin functionality
+function init()
+{
+    // Add any admin-specific initialization here
+    \add_action('admin_init', __NAMESPACE__ . '\\register_admin_settings');
+}
+
+/**
+ * Register admin settings
+ */
+function register_admin_settings()
+{
+    // Add any admin settings registration here
+}
+
+// Initialize
+init();
