@@ -75,7 +75,11 @@ class Plugin
     public static function activate()
     {
         require_once COSTA_RICA_MAP_PLUGIN_DIR . 'admin/tour-functions.php';
+
+        // Register the post type
         Tours\register_tour_cpt();
+
+        // Flush rewrite rules
         \flush_rewrite_rules();
     }
 
@@ -84,7 +88,10 @@ class Plugin
      */
     public static function deactivate()
     {
+        // Unregister the post type
         \unregister_post_type('tour');
+
+        // Flush rewrite rules
         \flush_rewrite_rules();
     }
 
@@ -114,7 +121,7 @@ class Plugin
             array(
                 'ajaxurl' => \admin_url('admin-ajax.php'),
                 'nonce' => \wp_create_nonce('costa_rica_map_nonce'),
-                'pluginUrl' => COSTA_RICA_MAP_PLUGIN_URL,
+                'pluginUrl' => COSTA_RICA_MAP_PLUGIN_URL
             )
         );
     }

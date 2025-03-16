@@ -19,8 +19,8 @@ if (!defined('WPINC')) {
 function register_zone_taxonomy()
 {
     $labels = array(
-        'name'              => \_x('Zones', 'taxonomy general name', 'costa-rica-map'),
-        'singular_name'     => \_x('Zone', 'taxonomy singular name', 'costa-rica-map'),
+        'name'              => \__('Zones', 'costa-rica-map'),
+        'singular_name'     => \__('Zone', 'costa-rica-map'),
         'search_items'      => \__('Search Zones', 'costa-rica-map'),
         'all_items'         => \__('All Zones', 'costa-rica-map'),
         'parent_item'       => \__('Parent Zone', 'costa-rica-map'),
@@ -40,10 +40,22 @@ function register_zone_taxonomy()
         'query_var'         => true,
         'show_in_rest'      => true,
         'rewrite'          => array('slug' => 'zone'),
+        'show_in_rest'      => true,
+        'rest_base'         => 'zones',
+        'rest_controller_class' => 'WP_REST_Terms_Controller',
     );
 
     \register_taxonomy('zone', array('tour'), $args);
 }
 
-// Register the taxonomy
-\add_action('init', __NAMESPACE__ . '\\register_zone_taxonomy');
+/**
+ * Initialize the zone taxonomy
+ */
+function init()
+{
+    // Register taxonomy on init
+    \add_action('init', __NAMESPACE__ . '\\register_zone_taxonomy');
+}
+
+// Initialize
+init();

@@ -14,14 +14,25 @@ if (!defined('WPINC')) {
 }
 
 /**
- * Add custom meta box for coordinates
+ * Add custom meta boxes
  */
-function add_meta_boxes()
+function add_tour_meta_boxes()
 {
+    // Location meta box
     \add_meta_box(
         'tour_coordinates',
         \__('Tour Location', 'costa-rica-map'),
-        __NAMESPACE__ . '\\coordinates_meta_box',
+        __NAMESPACE__ . '\\render_coordinates_meta_box',
+        'tour',
+        'normal',
+        'high'
+    );
+
+    // Custom URL meta box
+    \add_meta_box(
+        'tour_custom_url',
+        \__('Custom Page Link', 'costa-rica-map'),
+        __NAMESPACE__ . '\\render_custom_url_meta_box',
         'tour',
         'normal',
         'high'
@@ -29,12 +40,14 @@ function add_meta_boxes()
 }
 
 /**
- * Render meta box content
+ * Render coordinates meta box content
+ *
+ * @param WP_Post $post The post object.
  */
-function coordinates_meta_box($post)
+function render_coordinates_meta_box($post)
 {
     // Add nonce for security
-    \wp_nonce_field('costa_rica_map_save_meta_box_data', 'costa_rica_map_meta_box_nonce');
+    \wp_nonce_field('costa_rica_map_save_meta', 'costa_rica_map_meta_nonce');
 
     // Get existing values
     $latitude = \get_post_meta($post->ID, '_tour_latitude', true);
@@ -43,45 +56,103 @@ function coordinates_meta_box($post)
 ?>
     <p>
         <label for="tour_latitude"><?php \_e('Latitude:', 'costa-rica-map'); ?></label>
-        <input type="text" id="tour_latitude" name="tour_latitude" value="<?php echo \esc_attr($latitude); ?>" />
+        <input type="text"
+            id="tour_latitude"
+            name="tour_latitude"
+            value="<?php echo \esc_attr($latitude); ?>"
+            class="regular-text" />
     </p>
     <p>
         <label for="tour_longitude"><?php \_e('Longitude:', 'costa-rica-map'); ?></label>
-        <input type="text" id="tour_longitude" name="tour_longitude" value="<?php echo \esc_attr($longitude); ?>" />
+        <input type="text"
+            id="tour_longitude"
+            name="tour_longitude"
+            value="<?php echo \esc_attr($longitude); ?>"
+            class="regular-text" />
+    </p>
+<?php
+}
+
+/**
+ * Render custom URL meta box content
+ *
+ * @param WP_Post $post The post object.
+ */
+function render_custom_url_meta_box($post)
+{
+    // Get existing value
+    $custom_url = \get_post_meta($post->ID, '_tour_custom_url', true);
+
+?>
+    <p>
+        <label for="tour_custom_url"><?php \_e('Custom Page Link (Optional):', 'costa-rica-map'); ?></label>
+        <input type="url"
+            id="tour_custom_url"
+            name="tour_custom_url"
+            value="<?php echo \esc_url($custom_url); ?>"
+            placeholder="<?php echo \esc_attr(\get_permalink($post->ID)); ?>"
+            class="large-text" />
+    </p>
+    <p class="description">
+        <?php \_e('Enter a custom URL for this tour. Leave empty to use the default tour page.', 'costa-rica-map'); ?>
     </p>
 <?php
 }
 
 /**
  * Save meta box data
+ *
+ * @param int $post_id The post ID.
  */
-function save_meta_box_data($post_id)
+function save_tour_meta($post_id)
 {
-    if (!isset($_POST['costa_rica_map_meta_box_nonce'])) {
+    // Check if our nonce is set and verify it
+    if (
+        !isset($_POST['costa_rica_map_meta_nonce']) ||
+        !\wp_verify_nonce($_POST['costa_rica_map_meta_nonce'], 'costa_rica_map_save_meta')
+    ) {
         return;
     }
 
-    if (!\wp_verify_nonce($_POST['costa_rica_map_meta_box_nonce'], 'costa_rica_map_save_meta_box_data')) {
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
         return;
     }
 
-    if (\defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
+    // Check the user's permissions
+    if (isset($_POST['post_type']) && 'tour' === $_POST['post_type']) {
+        if (!\current_user_can('edit_post', $post_id)) {
+            return;
+        }
     }
 
-    if (!\current_user_can('edit_post', $post_id)) {
-        return;
-    }
-
+    // Update latitude
     if (isset($_POST['tour_latitude'])) {
-        \update_post_meta($post_id, '_tour_latitude', \sanitize_text_field($_POST['tour_latitude']));
+        $latitude = \sanitize_text_field($_POST['tour_latitude']);
+        \update_post_meta($post_id, '_tour_latitude', $latitude);
     }
 
+    // Update longitude
     if (isset($_POST['tour_longitude'])) {
-        \update_post_meta($post_id, '_tour_longitude', \sanitize_text_field($_POST['tour_longitude']));
+        $longitude = \sanitize_text_field($_POST['tour_longitude']);
+        \update_post_meta($post_id, '_tour_longitude', $longitude);
+    }
+
+    // Update custom URL
+    if (isset($_POST['tour_custom_url'])) {
+        $custom_url = empty($_POST['tour_custom_url']) ? '' : \esc_url_raw($_POST['tour_custom_url']);
+        \update_post_meta($post_id, '_tour_custom_url', $custom_url);
     }
 }
 
-// Hook into WordPress
-\add_action('add_meta_boxes', __NAMESPACE__ . '\\add_meta_boxes');
-\add_action('save_post', __NAMESPACE__ . '\\save_meta_box_data');
+/**
+ * Initialize meta boxes
+ */
+function init()
+{
+    \add_action('add_meta_boxes', __NAMESPACE__ . '\\add_tour_meta_boxes');
+    \add_action('save_post_tour', __NAMESPACE__ . '\\save_tour_meta');
+}
+
+// Initialize
+init();

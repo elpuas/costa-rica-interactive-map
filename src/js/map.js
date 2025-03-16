@@ -4,8 +4,29 @@ import 'leaflet/dist/leaflet.css';
 import markerIcon from '../images/map-marker.svg';
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize the map
-    const map = L.map('costa-rica-map').setView([9.7489, -83.7534], 8);
+    // Initialize the map with scrollWheelZoom enabled
+    const map = L.map('costa-rica-map', {
+        scrollWheelZoom: true,
+        center: [9.7489, -83.7534],
+        zoom: 7,
+    });
+
+    // Get the map container element
+    const mapContainer = map.getContainer();
+
+    // Function to handle mouse enter
+    function onMapMouseEnter() {
+        map.scrollWheelZoom.disable();
+    }
+
+    // Function to handle mouse leave
+    function onMapMouseLeave() {
+        map.scrollWheelZoom.enable();
+    }
+
+    // Add event listeners for hover behavior
+    mapContainer.addEventListener('mouseenter', onMapMouseEnter);
+    mapContainer.addEventListener('mouseleave', onMapMouseLeave);
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -15,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Create custom icon
     const customIcon = L.icon({
-        iconUrl: markerIcon,
-        iconSize: [32, 32], // size of the icon
-        iconAnchor: [16, 32], // point of the icon which will correspond to marker's location
-        popupAnchor: [0, -32], // point from which the popup should open relative to the iconAnchor
+        iconUrl: costaRicaMapData.pluginUrl + 'build/images/map-marker.svg',
+        iconSize: [32, 48], // Size of the icon
+        iconAnchor: [16, 48], // Point of the icon which will correspond to marker's location
+        popupAnchor: [0, -48], // Point from which the popup should open relative to the iconAnchor
     });
 
     // Store markers in a layer group
@@ -66,4 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load all tours when the map initializes
     loadTours();
+
+    // Cleanup function to remove event listeners when the map is destroyed
+    map.on('remove', function () {
+        mapContainer.removeEventListener('mouseenter', onMapMouseEnter);
+        mapContainer.removeEventListener('mouseleave', onMapMouseLeave);
+    });
 });
