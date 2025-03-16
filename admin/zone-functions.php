@@ -38,6 +38,7 @@ function register_zone_taxonomy()
         'show_ui'          => true,
         'show_admin_column' => true,
         'query_var'         => true,
+        'show_in_rest'      => true,
         'rewrite'          => array('slug' => 'zone'),
         'show_in_rest'      => true,
         'rest_base'         => 'zones',

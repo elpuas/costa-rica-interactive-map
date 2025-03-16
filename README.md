@@ -56,9 +56,45 @@ A WordPress plugin that creates an interactive map of Costa Rica using Leaflet.j
    - Create and manage geographical zones
 
 3. Display the Map:
-   - Use shortcode `[costa_rica_map]` in any page or post
-   - Map will display all tours with their markers
-   - Click markers to view tour information
+   - Use the shortcode `[costa_rica_map]` in any page or post
+   - The map will display with a default height of 500px
+   - You can customize the map container using CSS targeting `#costa-rica-map`
+   - The map will automatically:
+     - Center on Costa Rica coordinates (9.7489, -83.7534)
+     - Set an initial zoom level of 7
+     - Display all available tours as markers
+     - Show tour information in popups when markers are clicked
+   - Below the map, a `#tour-info` div is available for additional tour information
+
+   Example usage in a page/post:
+   ```
+   [costa_rica_map]
+   ```
+
+   Example CSS customization:
+   ```css
+   #costa-rica-map {
+       height: 700px; /* Change map height */
+       width: 100%;   /* Full width */
+       border: 1px solid #ddd; /* Add border */
+       border-radius: 8px;     /* Rounded corners */
+   }
+
+   .tour-popup h3 {
+       margin: 0 0 10px;
+       color: #333;
+   }
+
+   .tour-popup .tour-link {
+       display: inline-block;
+       margin-top: 10px;
+       padding: 5px 10px;
+       background: #0073aa;
+       color: white;
+       text-decoration: none;
+       border-radius: 4px;
+   }
+   ```
 
 ## Development
 

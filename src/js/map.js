@@ -1,6 +1,7 @@
 // Import Leaflet
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import markerIcon from '../images/map-marker.svg';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize the map with scrollWheelZoom enabled
