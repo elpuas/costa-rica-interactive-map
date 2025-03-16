@@ -3,8 +3,29 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize the map
-    const map = L.map('costa-rica-map').setView([9.7489, -83.7534], 7);
+    // Initialize the map with scrollWheelZoom enabled
+    const map = L.map('costa-rica-map', {
+        scrollWheelZoom: true,
+        center: [9.7489, -83.7534],
+        zoom: 7,
+    });
+
+    // Get the map container element
+    const mapContainer = map.getContainer();
+
+    // Function to handle mouse enter
+    function onMapMouseEnter() {
+        map.scrollWheelZoom.disable();
+    }
+
+    // Function to handle mouse leave
+    function onMapMouseLeave() {
+        map.scrollWheelZoom.enable();
+    }
+
+    // Add event listeners for hover behavior
+    mapContainer.addEventListener('mouseenter', onMapMouseEnter);
+    mapContainer.addEventListener('mouseleave', onMapMouseLeave);
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -65,4 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Load all tours when the map initializes
     loadTours();
+
+    // Cleanup function to remove event listeners when the map is destroyed
+    map.on('remove', function () {
+        mapContainer.removeEventListener('mouseenter', onMapMouseEnter);
+        mapContainer.removeEventListener('mouseleave', onMapMouseLeave);
+    });
 });
