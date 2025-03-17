@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const map = L.map('costa-rica-map', {
         scrollWheelZoom: true,
         center: [9.7489, -83.7534],
-        zoom: 7,
+        zoom: 8,
     });
 
     // Get the map container element
