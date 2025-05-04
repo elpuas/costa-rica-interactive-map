@@ -9,6 +9,7 @@
         "lint:css": "wp-scripts lint-style"
     },
     "dependencies": {
+        "@wordpress/i18n": "^5.22.0",
         "leaflet": "^1.9.4"
     },
     "devDependencies": {

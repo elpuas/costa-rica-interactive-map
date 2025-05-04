@@ -1,0 +1,169 @@
+# Copyright (C) 2025 ElPuas Digital Crafts
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Costa Rica Interactive Map 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/costa-rica-interactive-map\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-05-03T23:43:27+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: costa-rica-map\n"
+
+#. Plugin Name of the plugin
+#: costa-rica-interactive-map.php
+msgid "Costa Rica Interactive Map"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: costa-rica-interactive-map.php
+msgid "https://github.com/elpuas/costa-rica-interactive-map"
+msgstr ""
+
+#. Description of the plugin
+#: costa-rica-interactive-map.php
+msgid "An interactive map of Costa Rica using Leaflet.js"
+msgstr ""
+
+#. Author of the plugin
+#: costa-rica-interactive-map.php
+msgid "ElPuas Digital Crafts"
+msgstr ""
+
+#. Author URI of the plugin
+#: costa-rica-interactive-map.php
+msgid "https://elpuasdigitalcrafts.com"
+msgstr ""
+
+#: admin/meta-functions.php:24
+msgid "Tour Location"
+msgstr ""
+
+#: admin/meta-functions.php:34
+msgid "Custom Page Link"
+msgstr ""
+
+#: admin/meta-functions.php:58
+msgid "Latitude:"
+msgstr ""
+
+#: admin/meta-functions.php:66
+msgid "Longitude:"
+msgstr ""
+
+#: admin/meta-functions.php:88
+msgid "Custom Page Link (Optional):"
+msgstr ""
+
+#: admin/meta-functions.php:97
+msgid "Enter a custom URL for this tour. Leave empty to use the default tour page."
+msgstr ""
+
+#: admin/tour-functions.php:22
+#: admin/tour-functions.php:24
+msgid "Tours"
+msgstr ""
+
+#: admin/tour-functions.php:23
+#: admin/tour-functions.php:36
+msgid "Tour"
+msgstr ""
+
+#: admin/tour-functions.php:25
+msgid "Add New"
+msgstr ""
+
+#: admin/tour-functions.php:26
+msgid "Add New Tour"
+msgstr ""
+
+#: admin/tour-functions.php:27
+msgid "Edit Tour"
+msgstr ""
+
+#: admin/tour-functions.php:28
+msgid "New Tour"
+msgstr ""
+
+#: admin/tour-functions.php:29
+msgid "View Tour"
+msgstr ""
+
+#: admin/tour-functions.php:30
+msgid "Search Tours"
+msgstr ""
+
+#: admin/tour-functions.php:31
+msgid "No tours found"
+msgstr ""
+
+#: admin/tour-functions.php:32
+msgid "No tours found in Trash"
+msgstr ""
+
+#: admin/tour-functions.php:37
+msgid "Tour Description"
+msgstr ""
+
+#: admin/zone-functions.php:22
+#: admin/zone-functions.php:32
+msgid "Zones"
+msgstr ""
+
+#: admin/zone-functions.php:23
+msgid "Zone"
+msgstr ""
+
+#: admin/zone-functions.php:24
+msgid "Search Zones"
+msgstr ""
+
+#: admin/zone-functions.php:25
+msgid "All Zones"
+msgstr ""
+
+#: admin/zone-functions.php:26
+msgid "Parent Zone"
+msgstr ""
+
+#: admin/zone-functions.php:27
+msgid "Parent Zone:"
+msgstr ""
+
+#: admin/zone-functions.php:28
+msgid "Edit Zone"
+msgstr ""
+
+#: admin/zone-functions.php:29
+msgid "Update Zone"
+msgstr ""
+
+#: admin/zone-functions.php:30
+msgid "Add New Zone"
+msgstr ""
+
+#: admin/zone-functions.php:31
+msgid "New Zone Name"
+msgstr ""
+
+#: build/index.js:72
+#: src/js/map.js:55
+#: build/index.js:55
+msgid "Zones:"
+msgstr ""
+
+#: build/index.js:73
+#: src/js/map.js:56
+#: build/index.js:56
+msgid "View Tour Details"
+msgstr ""
+
+#: build/index.js:99
+#: src/js/map.js:86
+#: build/index.js:86
+msgid "Error loading tours:"
+msgstr ""

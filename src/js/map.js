@@ -2,6 +2,7 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import markerIcon from '../images/map-marker.svg';
+import { __ } from '@wordpress/i18n';
 
 document.addEventListener('DOMContentLoaded', function () {
     // Initialize the map with scrollWheelZoom enabled
@@ -51,8 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="tour-popup">
                 <h3>${tour.title}</h3>
                 <p>${tour.excerpt}</p>
-                <p><strong>Zones:</strong> ${tour.zones.join(', ')}</p>
-                <a href="${tour.permalink}" class="tour-link">View Tour Details</a>
+                <p><strong>${__('Zones:', 'costa-rica-map')}</strong> ${tour.zones.join(', ')}</p>
+                <a href="${tour.permalink}" class="tour-link">${__('View Tour Details', 'costa-rica-map')}</a>
             </div>
         `;
     }
@@ -82,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 }
             })
-            .catch(error => console.error('Error loading tours:', error));
+            .catch(error => console.error(__('Error loading tours:', 'costa-rica-map'), error));
     }
 
     // Load all tours when the map initializes
